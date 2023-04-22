@@ -30,10 +30,10 @@ import org.slf4j.LoggerFactory;
  */
 
 public class ASynchronousCommitConsumer {
-    private final static Logger logger = LoggerFactory.getLogger(org.example.producer.SimpleProducer.class.getName());
-    private final static String TOPIC = "hello.kafka.2";
-    private final static String BOOTSTRAP_SERVERS = "localhost:9092";
-    private final static String GROUP_ID = "test-group";
+    private static final Logger logger = LoggerFactory.getLogger(org.example.producer.SimpleProducer.class.getName());
+    private static final String TOPIC = "hello.kafka.2";
+    private static final String BOOTSTRAP_SERVERS = "localhost:9092";
+    private static final String GROUP_ID = "test-group";
 
     public static void main(String[] args) {
         Properties properties = new Properties();

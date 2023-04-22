@@ -9,15 +9,15 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.util.*;
 
-public class RebalanceListenerAndConsumer {
-    private final static Logger logger = LoggerFactory.getLogger(RebalanceListenerAndConsumer.class);
-    private final static String TOPIC = "hello.kafka.2";
-    private final static String BOOTSTRAP_SERVERS = "localhost:9092";
-    private final static String GROUP_ID = "test-group";
+public class RebalancedListenerAndConsumer {
+    private static final Logger logger = LoggerFactory.getLogger(RebalancedListenerAndConsumer.class);
+    private static final String TOPIC = "hello.kafka.2";
+    private static final String BOOTSTRAP_SERVERS = "localhost:9092";
+    private static final String GROUP_ID = "test-group";
 
 
     private static KafkaConsumer<String, String> consumer;
-    private static  Map<TopicPartition, OffsetAndMetadata> currentOffset = new HashMap<>();
+    private static final Map<TopicPartition, OffsetAndMetadata> currentOffset = new HashMap<>();
     public static void main(String[] args) {
         Properties configs = new Properties();
         configs.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
@@ -26,7 +26,7 @@ public class RebalanceListenerAndConsumer {
         configs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
 
         consumer = new KafkaConsumer<>(configs);
-        consumer.subscribe(List.of(TOPIC), new RebalanceListener());
+        consumer.subscribe(List.of(TOPIC), new RebalancedListener());
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(1));
             for (ConsumerRecord<String, String> record : records) {
@@ -37,8 +37,8 @@ public class RebalanceListenerAndConsumer {
             }
         }
     }
-    static class RebalanceListener implements ConsumerRebalanceListener {
-        private final static Logger logger = LoggerFactory.getLogger(RebalanceListener.class);
+    static class RebalancedListener implements ConsumerRebalanceListener {
+        private static final Logger logger = LoggerFactory.getLogger(RebalancedListener.class);
 
         @Override
         public void onPartitionsRevoked(Collection<TopicPartition> partitions) {

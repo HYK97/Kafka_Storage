@@ -22,9 +22,9 @@ import org.slf4j.LoggerFactory;
  * 2023-04-20                ddh96             최초 생성
  */
 public class SimpleProducer {
-    private final static Logger logger = LoggerFactory.getLogger(SimpleProducer.class.getName());
-    private final static String TOPIC = "hello.kafka.2";
-    private final static String BOOTSTRAP_SERVERS = "localhost:9092";
+    private static final Logger logger = LoggerFactory.getLogger(SimpleProducer.class.getName());
+    private static final String TOPIC = "hello.kafka.2";
+    private static final String BOOTSTRAP_SERVERS = "localhost:9092";
 
     public static void main(String[] args) {
         Properties properties = new Properties();
