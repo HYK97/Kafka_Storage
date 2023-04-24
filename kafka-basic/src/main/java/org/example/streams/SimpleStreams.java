@@ -1,0 +1,55 @@
+package org.example.streams;
+
+import java.util.Properties;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.StreamsBuilder;
+import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.kstream.KStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * packageName :  org.example.streams
+ * fileName : SimpleStreams
+ * author :  ddh96
+ * date : 2023-04-25
+ * description : kafka streams 관련 예제
+ * ===========================================================
+ * DATE                 AUTHOR                NOTE
+ * -----------------------------------------------------------
+ * 2023-04-25                ddh96             최초 생성
+ */
+public class SimpleStreams {
+    private static final Logger logger = LoggerFactory.getLogger(SimpleStreams.class.getName());
+    private static final String APPLICATION_NAME = "streams-application";
+    // 원본 토픽
+    private static final String LOG_TOPIC = "streams_log";
+    // 복사 토픽
+    private static final String LOG_TOPIC_COPY = "streams_log_copy";
+    private static final String BOOTSTRAP_SERVERS = "localhost:9092";
+
+    public static void main(String[] args) {
+        Properties properties = new Properties();
+
+        properties.put(StreamsConfig.APPLICATION_ID_CONFIG, APPLICATION_NAME);
+        properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
+        properties.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        properties.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+
+        StreamsBuilder streamsBuilder = new StreamsBuilder();
+        // 원본 토픽
+        KStream<String, String> streamLog = streamsBuilder.stream(LOG_TOPIC);
+        // 복사 토픽
+        streamLog.to(LOG_TOPIC_COPY);
+        // LOG_TOPIC -> LOG_TOPIC_COPY 로 메세지를 복사하는 스트림을 생성한다.
+        KafkaStreams streams = new KafkaStreams(streamsBuilder.build(), properties);
+        streams.start();
+        //close x
+    }
+}
