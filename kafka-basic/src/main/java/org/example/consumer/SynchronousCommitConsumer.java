@@ -1,4 +1,4 @@
-package org.example.cunsumer;
+package org.example.consumer;
 
 import java.time.Duration;
 import java.util.List;
@@ -13,8 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * packageName :  org.example.cunsumer
- * fileName : SimpleConsumer
+ * packageName :  org.example.consumer
+ * fileName : SynchronousCommitConsumer
  * author :  ddh96
  * date : 2023-04-20 
  * description : 동기 커밋

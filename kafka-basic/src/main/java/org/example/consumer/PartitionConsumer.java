@@ -1,16 +1,13 @@
-package org.example.cunsumer;
+package org.example.consumer;
 
 import java.time.Duration;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRebalanceListener;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -21,8 +18,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * packageName :  org.example.cunsumer
- * fileName : PartitionCunsumer
+ * packageName :  org.example.consumer
+ * fileName : PartitionConsumer
  * author :  ddh96
  * date : 2023-04-22
  * description :

@@ -1,4 +1,4 @@
-package org.example.cunsumer;
+package org.example.consumer;
 
 import org.apache.kafka.clients.consumer.*;
 import org.apache.kafka.common.TopicPartition;
@@ -9,6 +9,18 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.util.*;
 
+
+/**
+ * packageName :  org.example.consumer
+ * fileName : RebalancedListenerAndConsumer
+ * author :  ddh96
+ * date : 2023-04-22
+ * description : rebalanced listener 사용해서 컨슈머가 리밸런싱 될 때마다 오프셋을 커밋
+ * ===========================================================
+ * DATE                 AUTHOR                NOTE
+ * -----------------------------------------------------------
+ * 2023-04-22                ddh96             최초 생성
+ */
 public class RebalancedListenerAndConsumer {
     private static final Logger logger = LoggerFactory.getLogger(RebalancedListenerAndConsumer.class);
     private static final String TOPIC = "hello.kafka.2";
